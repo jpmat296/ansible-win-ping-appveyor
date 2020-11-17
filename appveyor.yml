@@ -6,7 +6,8 @@ environment:
 
 install:
   - sudo apt update
-  - sudo apt install -y wget
+  - sudo apt install -y wget cpu-checker
+  - kvm-ok
   - source $HOME/venv3.8/bin/activate
   - python3.8 --version
   - pip3.8 --version
