@@ -24,5 +24,5 @@ on_finish:
 
 notifications:
   - provider: Email
-  to:
-    - '{{commitAuthorEmail}}'
+    to:
+      - '{{commitAuthorEmail}}'
