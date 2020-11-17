@@ -1,2 +1,4 @@
 ---
 # tasks file for ansible-win-ping-appveyor
+- name: win_ping
+  win_ping: {}
