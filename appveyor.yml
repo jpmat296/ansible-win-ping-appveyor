@@ -5,6 +5,8 @@ environment:
   PIPENV_VERBOSITY: -1
 
 install:
+  - sudo apt update
+  - sudo apt install -y wget
   - source $HOME/venv3.8/bin/activate
   - python3.8 --version
   - pip3.8 --version
