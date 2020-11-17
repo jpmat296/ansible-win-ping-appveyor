@@ -5,6 +5,7 @@ environment:
   PIPENV_VERBOSITY: -1
 
 install:
+  - ls $HOME/venv3.8/bin/activate
   - source $HOME/venv3.8/bin/activate
   - python3.8 --version
   - pip3.8 --version
