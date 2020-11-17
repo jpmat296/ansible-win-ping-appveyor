@@ -2,23 +2,22 @@ version: 1.0.{build}
 image: Ubuntu1604
 
 install:
-  - sudo apt update
-  - sudo apt install -y cpu-checker
-  - kvm-ok
   - source $HOME/venv3.8/bin/activate
   - python3 --version
   - pip3 --version
-  - pip3 install --pre molecule==3.* molecule-vagrant python-vagrant pywinrm ansible-lint
+  - pip3 install pipenv
+  - pipenv --version
+  - pipenv sync
   - wget https://releases.hashicorp.com/vagrant/2.2.13/vagrant_2.2.13_x86_64.deb
-  - sudo dpkg -i vagrant_2.2.13_x86_64.deb
+  - sudo apt install ./vagrant_2.2.13_x86_64.deb
 
 build: false
 
 before_test:
-  - molecule create -s default
+  - pipenv run molecule create
 
 test_script:
-  - molecule test --destroy never -s default
+  - pipenv run molecule test --destroy never
 
 on_finish:
-  - molecule destroy -s default
+  - pipenv run molecule destroy
