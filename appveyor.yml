@@ -27,8 +27,10 @@ test_script:
   - pipenv run molecule test --destroy never
 
 after_test:
-  - appveyor PushArtifact ~/VirtualBox VMs/*/Logs/*
-  - appveyor PushArtifact ~/.cache/molecule
+  - mkdir -p artifacts/Vbox_Logs
+  - find "$HOME/VirtualBox VMs" -name Logs -exec cp -rp {}/* artifacts/Vbox_Logs
+  - cp -rp ~/.cache/molecule artifacts/cache_molecule
+  - appveyor PushArtifact artifacts
 
 on_finish:
   - pipenv run molecule destroy
