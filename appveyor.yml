@@ -13,6 +13,8 @@ install:
   - pipenv --bare sync
   - wget -q https://releases.hashicorp.com/vagrant/2.2.13/vagrant_2.2.13_x86_64.deb
   - sudo apt install ./vagrant_2.2.13_x86_64.deb
+  - vagrant --version
+  - vboxmanage --version
 
 build: false
 
