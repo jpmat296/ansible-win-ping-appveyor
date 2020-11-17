@@ -11,6 +11,8 @@ install:
   - pip3 --disable-pip-version-check -q install pipenv
   - pipenv --version
   - pipenv --bare sync
+  - pipenv run molecule --version
+  - pipenv run ansible --version
   - wget -q https://releases.hashicorp.com/vagrant/2.2.13/vagrant_2.2.13_x86_64.deb
   - sudo apt install ./vagrant_2.2.13_x86_64.deb
   - vagrant --version
