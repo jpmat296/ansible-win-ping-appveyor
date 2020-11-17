@@ -29,3 +29,7 @@ notifications:
   - provider: Email
     to:
       - '{{commitAuthorEmail}}'
+
+artifacts:
+  - path: ~/.cache/molecule
+  - path: '~/VirtualBox VMs/**/Logs/*'
