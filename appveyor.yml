@@ -21,3 +21,8 @@ test_script:
 
 on_finish:
   - pipenv run molecule destroy
+
+notifications:
+  - provider: Email
+  to:
+    - '{{commitAuthorEmail}}'
