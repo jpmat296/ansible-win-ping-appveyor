@@ -34,6 +34,7 @@ after_test:
 
 on_finish:
   - pipenv run molecule destroy
+  - rm -rf ~/.cache/molecule
 
 notifications:
   - provider: Email
