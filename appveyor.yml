@@ -31,7 +31,6 @@ after_test:
   - mkdir artifacts
   - find "$HOME/VirtualBox VMs" -name Logs -exec cp -rp {} artifacts/Vbox_Logs \;
   - cp -rp ~/.cache/molecule artifacts/cache_molecule
-  - appveyor PushArtifact artifacts
 
 on_finish:
   - pipenv run molecule destroy
@@ -40,3 +39,6 @@ notifications:
   - provider: Email
     to:
       - '{{commitAuthorEmail}}'
+
+artifacts:
+  - path: artifacts
