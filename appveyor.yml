@@ -26,6 +26,10 @@ before_test:
 test_script:
   - pipenv run molecule test --destroy never
 
+after_test:
+  - appveyor PushArtifact ~/VirtualBox VMs/*/Logs/*
+  - appveyor PushArtifact ~/.cache/molecule
+
 on_finish:
   - pipenv run molecule destroy
 
@@ -33,7 +37,3 @@ notifications:
   - provider: Email
     to:
       - '{{commitAuthorEmail}}'
-
-artifacts:
-  - path: ~/.cache/molecule
-  - path: '~/VirtualBox VMs/**/Logs/*'
