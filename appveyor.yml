@@ -26,7 +26,7 @@ build: false
 
 before_test:
   - BASE_DIR=$(basename $PWD)
-  - ROLE_DIR=$BASE_DIR-worker${APPVEYOR_WORKER_ID}
+  - ROLE_DIR=$BASE_DIR-worker${APPVEYOR_JOB_ID}
   - mkdir $ROLE_DIR
   - shopt -s extglob dotglob
   - mv !($ROLE_DIR) $ROLE_DIR
