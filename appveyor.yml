@@ -24,8 +24,14 @@ install:
 
 build: false
 
+before_test:
+  - ROLE_NAME=$(basename $PWD)
+  - cd ..
+  - mv $ROLE_NAME-job${APPVEYOR_JOB_NUMBER}
+  - cd $ROLE_NAME-job${APPVEYOR_JOB_NUMBER}
+
 test_script:
-  - pipenv run molecule test -s default${APPVEYOR_JOB_NUMBER}
+  - pipenv run molecule test
 
 after_test:
   - rm -rf artifacts
