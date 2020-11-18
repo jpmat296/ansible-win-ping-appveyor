@@ -25,17 +25,18 @@ install:
 build: false
 
 before_test:
-  - ROLE_NAME=$(basename $PWD)
-  - mkdir $ROLE_NAME-job${APPVEYOR_JOB_ID}
+  - BASE_DIR=$(basename $PWD)
+  - ROLE_DIR=$BASE_DIR-job${APPVEYOR_JOB_ID}
+  - mkdir $ROLE_DIR
   - shopt -s extglob dotglob
-  - mv !($ROLE_NAME-job${APPVEYOR_JOB_ID}) $ROLE_NAME-job${APPVEYOR_JOB_ID}
+  - mv !($ROLE_DIR) $ROLE_DIR
 
 test_script:
-  - cd $ROLE_NAME-job${APPVEYOR_JOB_ID}
+  - cd $ROLE_DIR
   - pipenv run molecule test
 
 after_test:
-  - cd $ROLE_NAME-job${APPVEYOR_JOB_ID}
+  - cd $ROLE_DIR
   - rm -rf artifacts
   - mkdir artifacts
   - find "$HOME/VirtualBox VMs" -name Logs -exec cp -rp {} artifacts/Vbox_Logs \;
