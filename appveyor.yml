@@ -5,8 +5,9 @@ environment:
   PIPENV_VERBOSITY: -1
 
 install:
+  - uname -a
   - sudo apt update
-  - sudo apt install -y wget cpu-checker kmod
+  - sudo apt install -y cpu-checker
   - sudo kvm-ok
   - source $HOME/venv3.8/bin/activate
   - python3.8 --version
