@@ -1,6 +1,8 @@
 version: 1.0.{build}
 image: Ubuntu1804
 
+clone_folder: /home/appveyor/myprojects
+
 environment:
   PIPENV_VERBOSITY: -1
 
