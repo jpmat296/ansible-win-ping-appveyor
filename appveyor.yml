@@ -36,7 +36,6 @@ test_script:
   - pipenv run molecule test
 
 after_test:
-  - cd $ROLE_DIR
   - rm -rf artifacts
   - mkdir artifacts
   - find "$HOME/VirtualBox VMs" -name Logs -exec cp -rp {} artifacts/Vbox_Logs \;
