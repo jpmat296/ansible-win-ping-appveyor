@@ -1,7 +1,5 @@
 ---
 - name: Converge
   hosts: all
-  tasks:
-    - name: "Include ansible-win-ping-appveyor"
-      include_role:
-        name: "ansible-win-ping-appveyor"
+  roles:
+    - role: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
