@@ -3,7 +3,6 @@ image: Ubuntu1604 ## FIXME : 18
 
 environment:
   PIPENV_VERBOSITY: -1
-  MOLECULE_PARALLEL: True
 
 install:
   - uname -a
