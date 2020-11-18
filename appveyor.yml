@@ -25,7 +25,7 @@ install:
 build: false
 
 test_script:
-  - pipenv run molecule test
+  - pipenv run molecule test -s default${APPVEYOR_JOB_NUMBER}
 
 after_test:
   - rm -rf artifacts
