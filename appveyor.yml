@@ -27,7 +27,7 @@ build: false
 before_test:
   - ROLE_NAME=$(basename $PWD)
   - cd ..
-  - cp $ROLE_NAME $ROLE_NAME-job${APPVEYOR_JOB_NUMBER}
+  - cp -r $ROLE_NAME $ROLE_NAME-job${APPVEYOR_JOB_NUMBER}
   - cd $ROLE_NAME-job${APPVEYOR_JOB_NUMBER}
 
 test_script:
