@@ -1,5 +1,5 @@
 version: 1.0.{build}
-image: Ubuntu1604
+image: Ubuntu1604 ## FIXME : 18
 
 environment:
   PIPENV_VERBOSITY: -1
@@ -25,21 +25,14 @@ install:
 
 build: false
 
-before_test:
-  - pipenv run molecule create
-
 test_script:
-  - pipenv run molecule test --destroy never
+  - pipenv run molecule test
 
 after_test:
   - rm -rf artifacts
   - mkdir artifacts
   - find "$HOME/VirtualBox VMs" -name Logs -exec cp -rp {} artifacts/Vbox_Logs \;
   - cp -rp ~/.cache/molecule artifacts/cache_molecule
-
-on_finish:
-  - pipenv run molecule destroy
-  - rm -rf ~/.cache/molecule
 
 notifications:
   - provider: Email
