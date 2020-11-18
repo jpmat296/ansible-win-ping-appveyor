@@ -6,13 +6,13 @@ driver:
   provider:
     name: virtualbox
 platforms:
-  - name: vagrant-win2012r2
+  - name: &name vagrant-win2012r2
     box: jborean93/WindowsServer2012R2
 provisioner:
   name: ansible
   inventory:
     host_vars:
-      vagrant-win2012r2:
+      *name:
         ansible_user: vagrant
         ansible_password: vagrant
         ansible_port: 55986
