@@ -14,6 +14,7 @@ install:
   - pip3.8 --version
   - pip3.8 --disable-pip-version-check -q install pipenv
   - pipenv --version
+  - pipenv --bare sync
   - pipenv run molecule --version
   - pipenv run ansible --version
   - wget -q https://releases.hashicorp.com/vagrant/2.2.13/vagrant_2.2.13_x86_64.deb
@@ -24,7 +25,6 @@ install:
 build: false
 
 before_test:
-  - pipenv --bare sync
   - pipenv run molecule create
 
 test_script:
