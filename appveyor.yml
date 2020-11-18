@@ -1,7 +1,7 @@
 version: 1.0.{build}
 image: Ubuntu1804
 
-clone_folder: /home/appveyor/$APPVEYOR_PROJECT_NAME-job${APPVEYOR_JOB_NUMBER}
+clone_folder: /home/appveyor/ansible-win-ping-appveyor-job${APPVEYOR_JOB_NUMBER}
 
 environment:
   PIPENV_VERBOSITY: -1
