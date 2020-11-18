@@ -1,8 +1,6 @@
 version: 1.0.{build}
 image: Ubuntu1804
 
-clone_folder: /home/appveyor/ansible-win-ping-appveyor-$(echo $APPVEYOR_WORKER_ID)
-
 environment:
   PIPENV_VERBOSITY: -1
 
@@ -26,16 +24,18 @@ install:
 
 build: false
 
-# before_test:
-#   - ROLE_NAME=$(basename $PWD)
-#   - cd ..
-#   - cp -r $ROLE_NAME $ROLE_NAME-job${APPVEYOR_JOB_NUMBER}
-#   - cd $ROLE_NAME-job${APPVEYOR_JOB_NUMBER}
+before_test:
+  - ROLE_NAME=$(basename $PWD)
+  - mkdir $ROLE_NAME-job${APPVEYOR_JOB_ID}
+  - shopt -s extglob dotglob
+  - mv !($ROLE_NAME-job${APPVEYOR_JOB_ID}) $ROLE_NAME-job${APPVEYOR_JOB_ID}
 
 test_script:
+  - cd $ROLE_NAME-job${APPVEYOR_JOB_ID}
   - pipenv run molecule test
 
 after_test:
+  - cd $ROLE_NAME-job${APPVEYOR_JOB_ID}
   - rm -rf artifacts
   - mkdir artifacts
   - find "$HOME/VirtualBox VMs" -name Logs -exec cp -rp {} artifacts/Vbox_Logs \;
