@@ -49,4 +49,4 @@ notifications:
       - '{{commitAuthorEmail}}'
 
 artifacts:
-  - path: '**/artifacts'
+  - path: '**/artifacts/x'
