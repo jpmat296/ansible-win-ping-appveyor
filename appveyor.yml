@@ -1,5 +1,4 @@
 version: 1.0.{build}
-image: Ubuntu1804
 
 environment:
   PIPENV_VERBOSITY: -1
