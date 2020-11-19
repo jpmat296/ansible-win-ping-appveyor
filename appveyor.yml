@@ -14,7 +14,7 @@ install:
   - wget -q https://releases.hashicorp.com/vagrant/2.2.13/vagrant_2.2.13_x86_64.deb
   - sudo apt install ./vagrant_2.2.13_x86_64.deb
   - uname -a
-  - echo -e "\e[33mPrint all versions"
+  - echo -e "\e[33mPrint all versions\e[0m"
   - python3.8 --version
   - pip3.8 --version
   - pipenv --version
