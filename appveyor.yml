@@ -5,20 +5,21 @@ environment:
   ROLE_DIR: ${APPVEYOR_PROJECT_NAME}-job${APPVEYOR_JOB_ID}
 
 install:
-  - uname -a
   - sudo apt update
   - sudo apt install -y cpu-checker
   - sudo kvm-ok
   - source $HOME/venv3.8/bin/activate
-  - python3.8 --version
-  - pip3.8 --version
   - pip3.8 --disable-pip-version-check -q install pipenv
-  - pipenv --version
   - pipenv --bare sync
-  - pipenv run molecule --version
-  - pipenv run ansible --version
   - wget -q https://releases.hashicorp.com/vagrant/2.2.13/vagrant_2.2.13_x86_64.deb
   - sudo apt install ./vagrant_2.2.13_x86_64.deb
+  - uname -a
+  - echo "\e[33mPrint all versions"
+  - python3.8 --version
+  - pip3.8 --version
+  - pipenv --version
+  - pipenv run molecule --version
+  - pipenv run ansible --version
   - vagrant --version
   - vboxmanage --version
 
