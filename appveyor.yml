@@ -1,0 +1,34 @@
+version: 1.0.{build}
+image: Ubuntu1804
+
+environment:
+  PIPENV_VERBOSITY: -1
+
+install:
+  - source $HOME/venv3.8/bin/activate
+  - pip3.8 --disable-pip-version-check -q install pipenv
+  - pipenv --bare sync
+  - wget -q https://releases.hashicorp.com/vagrant/2.2.13/vagrant_2.2.13_x86_64.deb
+  - sudo apt install ./vagrant_2.2.13_x86_64.deb
+  - echo -e "\e[33m***** Print all versions\e[0m"
+  - uname -a
+  - python3.8 --version
+  - pip3.8 --version
+  - pipenv --version
+  - pipenv run molecule --version
+  - pipenv run ansible --version
+  - vagrant --version
+  - vboxmanage --version
+
+build: false
+
+test_script:
+  - pipenv run molecule test
+
+after_test:
+  - mkdir artifacts
+  - find "$HOME/VirtualBox VMs" -name Logs -exec cp -rp {} artifacts/Vbox_Logs \;
+  - cp -rp ~/.cache/molecule artifacts/cache_molecule
+
+artifacts:
+  - path: artifacts
