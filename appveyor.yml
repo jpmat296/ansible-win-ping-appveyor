@@ -49,4 +49,4 @@ notifications:
       - '{{commitAuthorEmail}}'
 
 artifacts:
-  - path: $(ROLE_DIR)/artifacts
+  - path: **/artifacts
