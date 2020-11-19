@@ -50,4 +50,5 @@ notifications:
 
 artifacts:
   - path: '**/artifacts'
+    name: artif123
     type: zip
