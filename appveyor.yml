@@ -1,10 +1,15 @@
 version: 1.0.{build}
-image: Ubuntu1804
 
 environment:
+  APPVEYOR_BUILD_WORKER_IMAGE: Linux
+  APPVEYOR_BUILD_WORKER_CLOUD: moe Docker
   PIPENV_VERBOSITY: -1
+  ROLE_DIR: ${APPVEYOR_PROJECT_NAME}-job${APPVEYOR_JOB_ID}
 
 install:
+  - sudo apt update
+  - sudo apt install -y cpu-checker
+  - sudo kvm-ok
   - source $HOME/venv3.8/bin/activate
   - pip3.8 --disable-pip-version-check -q install pipenv
   - pipenv --bare sync
@@ -22,7 +27,14 @@ install:
 
 build: false
 
+before_test:
+  # Move all files in subfoler $ROLE_DIR to avoid name collision in ~/.cache/molecule
+  - mkdir $ROLE_DIR
+  - shopt -s extglob dotglob
+  - mv !($ROLE_DIR) $ROLE_DIR
+
 test_script:
+  - cd $ROLE_DIR
   - pipenv run molecule test
 
 after_test:
@@ -30,5 +42,10 @@ after_test:
   - find "$HOME/VirtualBox VMs" -name Logs -exec cp -rp {} artifacts/Vbox_Logs \;
   - cp -rp ~/.cache/molecule artifacts/cache_molecule
 
+notifications:
+  - provider: Email
+    to:
+      - '{{commitAuthorEmail}}'
+
 artifacts:
-  - path: artifacts
+  - path: $ROLE_DIR/artifacts
