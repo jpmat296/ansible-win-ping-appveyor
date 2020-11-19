@@ -3,7 +3,7 @@ image: Ubuntu1804
 
 environment:
   PIPENV_VERBOSITY: -1
-  ROLE_DIR2: ${APPVEYOR_PROJECT_NAME}-job${APPVEYOR_JOB_ID}
+  ROLE_DIR: ${APPVEYOR_PROJECT_NAME}-job${APPVEYOR_JOB_ID}
 
 install:
   - uname -a
@@ -26,8 +26,7 @@ install:
 build: false
 
 before_test:
-  - BASE_DIR=$(basename $PWD)
-  - ROLE_DIR=$BASE_DIR-job${APPVEYOR_JOB_ID}
+  # Move all files in subfoler $ROLE_DIR to avoid name collision in ~/.cache/molecule
   - mkdir $ROLE_DIR
   - shopt -s extglob dotglob
   - mv !($ROLE_DIR) $ROLE_DIR
@@ -50,6 +49,6 @@ notifications:
       - '{{commitAuthorEmail}}'
 
 artifacts:
-  - path: '$(ROLE_DIR2)/artifacts'
+  - path: $ROLE_DIR/artifacts
     name: artif123
     type: zip
