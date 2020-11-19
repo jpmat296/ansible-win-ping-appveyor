@@ -49,4 +49,5 @@ notifications:
       - '{{commitAuthorEmail}}'
 
 artifacts:
-  - path: '**/artifacts/x'
+  - path: '**/artifacts'
+    type: zip
