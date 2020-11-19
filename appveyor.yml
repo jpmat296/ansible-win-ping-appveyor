@@ -3,6 +3,7 @@ image: Ubuntu1804
 
 environment:
   PIPENV_VERBOSITY: -1
+  ROLE_DIR2: $(basename $PWD)-job${APPVEYOR_JOB_ID}
 
 install:
   - uname -a
@@ -49,6 +50,6 @@ notifications:
       - '{{commitAuthorEmail}}'
 
 artifacts:
-  - path: '$(ROLE_DIR)/artifacts'
+  - path: '$(ROLE_DIR2)/artifacts'
     name: artif123
     type: zip
