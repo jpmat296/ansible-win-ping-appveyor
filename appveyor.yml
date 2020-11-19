@@ -3,7 +3,7 @@ image: Ubuntu1804
 
 environment:
   PIPENV_VERBOSITY: -1
-  ROLE_DIR2: $(basename $PWD)-job${APPVEYOR_JOB_ID}
+  ROLE_DIR2: ${APPVEYOR_PROJECT_NAME}-job${APPVEYOR_JOB_ID}
 
 install:
   - uname -a
