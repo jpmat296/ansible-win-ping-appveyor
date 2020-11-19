@@ -33,7 +33,7 @@ before_test:
 
 test_script:
   - cd $ROLE_DIR
-  - pipenv run molecule test
+  # - pipenv run molecule test
 
 after_test:
   - pwd
@@ -41,6 +41,7 @@ after_test:
   - mkdir artifacts
   - find "$HOME/VirtualBox VMs" -name Logs -exec cp -rp {} artifacts/Vbox_Logs \;
   - cp -rp ~/.cache/molecule artifacts/cache_molecule
+  - touch artifacts/x
 
 notifications:
   - provider: Email
@@ -48,4 +49,4 @@ notifications:
       - '{{commitAuthorEmail}}'
 
 artifacts:
-  - path: $ROLE_DIR/artifacts
+  - path: $(ROLE_DIR)/artifacts
