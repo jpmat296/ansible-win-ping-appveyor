@@ -49,6 +49,6 @@ notifications:
       - '{{commitAuthorEmail}}'
 
 artifacts:
-  - path: '**/artifacts'
+  - path: '$ROLE_DIR/artifacts'
     name: artif123
     type: zip
