@@ -8,8 +8,8 @@ install:
   - source $HOME/venv3.8/bin/activate
   - pip3.8 --disable-pip-version-check -q install pipenv
   - pipenv --bare sync
-  - wget -q https://releases.hashicorp.com/vagrant/2.2.13/vagrant_2.2.13_x86_64.deb
-  - sudo apt install ./vagrant_2.2.13_x86_64.deb
+  - wget -q https://releases.hashicorp.com/vagrant/2.2.14/vagrant_2.2.14_x86_64.deb
+  - sudo apt install ./vagrant_2.2.14_x86_64.deb
   - echo -e "\e[33m***** Print all versions\e[0m"
   - uname -a
   - python3.8 --version
